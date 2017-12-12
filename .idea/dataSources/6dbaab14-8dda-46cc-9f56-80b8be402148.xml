@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - @localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+    <root id="1"/>
+    <schema id="2" parent="1">
+      <Visible>1</Visible>
+    </schema>
+    <table id="3" parent="2" name="app_clients"/>
+    <table id="4" parent="2" name="app_expenses_categories"/>
+    <table id="5" parent="2" name="app_expenses_daily_list"/>
+    <table id="6" parent="2" name="app_notifications"/>
+    <table id="7" parent="2" name="app_products_categories"/>
+    <table id="8" parent="2" name="app_products_list"/>
+    <table id="9" parent="2" name="app_purchases_invoices"/>
+    <table id="10" parent="2" name="app_purchases_invoices_details"/>
+    <table id="11" parent="2" name="app_purchases_invoices_receipts"/>
+    <table id="12" parent="2" name="app_sales_invoices"/>
+    <table id="13" parent="2" name="app_sales_invoices_details"/>
+    <table id="14" parent="2" name="app_sales_invoices_receipts"/>
+    <table id="15" parent="2" name="app_suppliers"/>
+    <table id="16" parent="2" name="app_users"/>
+    <table id="17" parent="2" name="app_users_groups"/>
+    <table id="18" parent="2" name="app_users_groups_privileges"/>
+    <table id="19" parent="2" name="app_users_privileges"/>
+    <table id="20" parent="2" name="app_users_profiles"/>
+    <column id="21" parent="3" name="ClientId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="3" name="Name">
+      <DataType>VARCHAR(40)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="3" name="PhoneNumber">
+      <DataType>VARCHAR(15)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="3" name="Email">
+      <DataType>VARCHAR(40)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="3" name="Address">
+      <DataType>VARCHAR(50)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="26" parent="3" name="PRIMARY">
+      <ColNames>ClientId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="27" parent="4" name="ExpenseId">
+      <DataType>TINYINT UNSIGNED(3)|-6</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="28" parent="4" name="ExpenseName">
+      <DataType>VARCHAR(30)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="4" name="FixedPayment">
+      <DataType>DECIMAL(7,2)|3</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="30" parent="4" name="PRIMARY">
+      <ColNames>ExpenseId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="31" parent="5" name="DExpenseId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="32" parent="5" name="Payment">
+      <DataType>DECIMAL(7,2)|3</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="5" name="created">
+      <DataType>DATETIME(19)|93</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="5" name="ExpenseId">
+      <DataType>TINYINT UNSIGNED(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="5" name="UserId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="36" parent="5" name="fk_app_expenses_daily_list_app_expenses_categories1_idx">
+      <ColNames>ExpenseId</ColNames>
+    </index>
+    <index id="37" parent="5" name="fk_app_expenses_daily_list_app_users1_idx">
+      <ColNames>UserId</ColNames>
+    </index>
+    <key id="38" parent="5" name="PRIMARY">
+      <ColNames>DExpenseId
+ExpenseId
+UserId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="39" parent="5" name="fk_app_expenses_daily_list_app_expenses_categories1">
+      <ColNames>ExpenseId</ColNames>
+      <RefTableName>app_expenses_categories</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>ExpenseId</RefColNames>
+    </foreign-key>
+    <foreign-key id="40" parent="5" name="fk_app_expenses_daily_list_app_users1">
+      <ColNames>UserId</ColNames>
+      <RefTableName>app_users</RefTableName>
+      <RefColNames>UserId</RefColNames>
+    </foreign-key>
+    <column id="41" parent="6" name="NotificationId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="42" parent="6" name="Title">
+      <DataType>VARCHAR(30)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="6" name="Content">
+      <DataType>VARCHAR(255)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="6" name="Type">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="6" name="created">
+      <DataType>DATETIME(19)|93</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="6" name="seen">
+      <DataType>TINYINT(3)|-6</DataType>
+    </column>
+    <column id="47" parent="6" name="UserId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="48" parent="6" name="fk_app_notifications_app_users1_idx">
+      <ColNames>UserId</ColNames>
+    </index>
+    <key id="49" parent="6" name="PRIMARY">
+      <ColNames>NotificationId
+UserId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="50" parent="6" name="fk_app_notifications_app_users1">
+      <ColNames>UserId</ColNames>
+      <RefTableName>app_users</RefTableName>
+      <RefColNames>UserId</RefColNames>
+    </foreign-key>
+    <column id="51" parent="7" name="CategoryId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="52" parent="7" name="Name">
+      <DataType>VARCHAR(30)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="7" name="Image">
+      <DataType>VARCHAR(30)|12</DataType>
+    </column>
+    <key id="54" parent="7" name="PRIMARY">
+      <ColNames>CategoryId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="55" parent="8" name="ProductId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="56" parent="8" name="Name">
+      <DataType>VARCHAR(50)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="8" name="Image">
+      <DataType>VARCHAR(30)|12</DataType>
+    </column>
+    <column id="58" parent="8" name="quantity">
+      <DataType>SMALLINT(5)|5</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="8" name="Price">
+      <DataType>DECIMAL(6,2)|3</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="8" name="Unit">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="61" parent="8" name="BarCode">
+      <DataType>CHAR(20)|1</DataType>
+    </column>
+    <column id="62" parent="8" name="CategoryId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="63" parent="8" name="fk_app_products_list_app_products_categories1_idx">
+      <ColNames>CategoryId</ColNames>
+    </index>
+    <key id="64" parent="8" name="PRIMARY">
+      <ColNames>ProductId
+CategoryId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="65" parent="8" name="fk_app_products_list_app_products_categories1">
+      <ColNames>CategoryId</ColNames>
+      <RefTableName>app_products_categories</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>CategoryId</RefColNames>
+    </foreign-key>
+    <column id="66" parent="9" name="InvoiceId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="67" parent="9" name="PaymentType">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="68" parent="9" name="PaymentStatus">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="9" name="Created">
+      <DataType>DATE(10)|91</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="70" parent="9" name="Discount">
+      <DataType>DECIMAL(8,2)|3</DataType>
+    </column>
+    <column id="71" parent="9" name="UserId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="9" name="SupplierId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="73" parent="9" name="fk_app_purchases_invoices_app_suppliers1_idx">
+      <ColNames>SupplierId</ColNames>
+    </index>
+    <index id="74" parent="9" name="fk_app_purchases_invoices_app_users1_idx">
+      <ColNames>UserId</ColNames>
+    </index>
+    <key id="75" parent="9" name="PRIMARY">
+      <ColNames>InvoiceId
+UserId
+SupplierId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="76" parent="9" name="fk_app_purchases_invoices_app_suppliers1">
+      <ColNames>SupplierId</ColNames>
+      <RefTableName>app_suppliers</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>SupplierId</RefColNames>
+    </foreign-key>
+    <foreign-key id="77" parent="9" name="fk_app_purchases_invoices_app_users1">
+      <ColNames>UserId</ColNames>
+      <RefTableName>app_users</RefTableName>
+      <RefColNames>UserId</RefColNames>
+    </foreign-key>
+    <column id="78" parent="10" name="Id">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="79" parent="10" name="Quantity">
+      <DataType>SMALLINT(5)|5</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="80" parent="10" name="ProductPrice">
+      <DataType>DECIMAL(7,2)|3</DataType>
+    </column>
+    <column id="81" parent="10" name="InvoiceId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="82" parent="10" name="ProductId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="83" parent="10" name="fk_app_purchases_invoices_details_app_products_list1_idx">
+      <ColNames>ProductId</ColNames>
+    </index>
+    <index id="84" parent="10" name="fk_app_purchases_invoices_details_app_purchases_invoices1_idx">
+      <ColNames>InvoiceId</ColNames>
+    </index>
+    <key id="85" parent="10" name="PRIMARY">
+      <ColNames>Id
+InvoiceId
+ProductId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="86" parent="10" name="fk_app_purchases_invoices_details_app_products_list1">
+      <ColNames>ProductId</ColNames>
+      <RefTableName>app_products_list</RefTableName>
+      <RefColNames>ProductId</RefColNames>
+    </foreign-key>
+    <foreign-key id="87" parent="10" name="fk_app_purchases_invoices_details_app_purchases_invoices1">
+      <ColNames>InvoiceId</ColNames>
+      <RefTableName>app_purchases_invoices</RefTableName>
+      <RefColNames>InvoiceId</RefColNames>
+    </foreign-key>
+    <column id="88" parent="11" name="ReceiptId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="89" parent="11" name="PaymentType">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="90" parent="11" name="PaymentAmount">
+      <DataType>DECIMAL(8,2)|3</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="91" parent="11" name="PaymentLiteral">
+      <DataType>VARCHAR(60)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="92" parent="11" name="BankName">
+      <DataType>VARCHAR(30)|12</DataType>
+    </column>
+    <column id="93" parent="11" name="BanKAccountNumber">
+      <DataType>VARCHAR(30)|12</DataType>
+    </column>
+    <column id="94" parent="11" name="CheckNumber">
+      <DataType>VARCHAR(15)|12</DataType>
+    </column>
+    <column id="95" parent="11" name="TransferedTo">
+      <DataType>VARCHAR(30)|12</DataType>
+    </column>
+    <column id="96" parent="11" name="Created">
+      <DataType>DATE(10)|91</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="97" parent="11" name="UserId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="98" parent="11" name="InvoiceId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="99" parent="11" name="fk_app_purchases_invoices_receipts_app_purchases_invoices1_idx">
+      <ColNames>InvoiceId</ColNames>
+    </index>
+    <index id="100" parent="11" name="fk_app_purchases_invoices_receipts_app_users1_idx">
+      <ColNames>UserId</ColNames>
+    </index>
+    <key id="101" parent="11" name="PRIMARY">
+      <ColNames>ReceiptId
+UserId
+InvoiceId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="102" parent="11" name="fk_app_purchases_invoices_receipts_app_purchases_invoices1">
+      <ColNames>InvoiceId</ColNames>
+      <RefTableName>app_purchases_invoices</RefTableName>
+      <RefColNames>InvoiceId</RefColNames>
+    </foreign-key>
+    <foreign-key id="103" parent="11" name="fk_app_purchases_invoices_receipts_app_users1">
+      <ColNames>UserId</ColNames>
+      <RefTableName>app_users</RefTableName>
+      <RefColNames>UserId</RefColNames>
+    </foreign-key>
+    <column id="104" parent="12" name="InvoiceId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="105" parent="12" name="PaymentType">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="106" parent="12" name="PaymentStatus">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="107" parent="12" name="Created">
+      <DataType>DATE(10)|91</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="108" parent="12" name="Discount">
+      <DataType>DECIMAL(8,2)|3</DataType>
+    </column>
+    <column id="109" parent="12" name="ClientId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="110" parent="12" name="UserId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="111" parent="12" name="fk_app_sales_invoices_app_clients1_idx">
+      <ColNames>ClientId</ColNames>
+    </index>
+    <index id="112" parent="12" name="fk_app_sales_invoices_app_users1_idx">
+      <ColNames>UserId</ColNames>
+    </index>
+    <key id="113" parent="12" name="PRIMARY">
+      <ColNames>InvoiceId
+ClientId
+UserId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="114" parent="12" name="fk_app_sales_invoices_app_clients1">
+      <ColNames>ClientId</ColNames>
+      <RefTableName>app_clients</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>ClientId</RefColNames>
+    </foreign-key>
+    <foreign-key id="115" parent="12" name="fk_app_sales_invoices_app_users1">
+      <ColNames>UserId</ColNames>
+      <RefTableName>app_users</RefTableName>
+      <RefColNames>UserId</RefColNames>
+    </foreign-key>
+    <column id="116" parent="13" name="Id">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="117" parent="13" name="Quantity">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="118" parent="13" name="ProductPrice">
+      <DataType>DECIMAL(7,2)|3</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="119" parent="13" name="ProductId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="120" parent="13" name="InvoiceId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="121" parent="13" name="fk_app_sales_invoices_details_app_products_list1_idx">
+      <ColNames>ProductId</ColNames>
+    </index>
+    <index id="122" parent="13" name="fk_app_sales_invoices_details_app_sales_invoices1_idx">
+      <ColNames>InvoiceId</ColNames>
+    </index>
+    <key id="123" parent="13" name="PRIMARY">
+      <ColNames>Id
+ProductId
+InvoiceId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="124" parent="13" name="fk_app_sales_invoices_details_app_products_list1">
+      <ColNames>ProductId</ColNames>
+      <RefTableName>app_products_list</RefTableName>
+      <RefColNames>ProductId</RefColNames>
+    </foreign-key>
+    <foreign-key id="125" parent="13" name="fk_app_sales_invoices_details_app_sales_invoices1">
+      <ColNames>InvoiceId</ColNames>
+      <RefTableName>app_sales_invoices</RefTableName>
+      <RefColNames>InvoiceId</RefColNames>
+    </foreign-key>
+    <column id="126" parent="14" name="ReceipId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="127" parent="14" name="PaymentType">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="128" parent="14" name="PaymentAmount">
+      <DataType>DECIMAL(8,2)|3</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="129" parent="14" name="PaymentLateral">
+      <DataType>VARCHAR(60)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="130" parent="14" name="BankName">
+      <DataType>VARCHAR(30)|12</DataType>
+    </column>
+    <column id="131" parent="14" name="BankAccountNumber">
+      <DataType>VARCHAR(30)|12</DataType>
+    </column>
+    <column id="132" parent="14" name="ChekNumber">
+      <DataType>VARCHAR(15)|12</DataType>
+    </column>
+    <column id="133" parent="14" name="TransferedTo">
+      <DataType>VARCHAR(45)|12</DataType>
+    </column>
+    <column id="134" parent="14" name="Created">
+      <DataType>DATE(10)|91</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="135" parent="14" name="UserId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="136" parent="14" name="InvoiceId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="137" parent="14" name="fk_app_sales_invoices_receipts_app_sales_invoices1_idx">
+      <ColNames>InvoiceId</ColNames>
+    </index>
+    <index id="138" parent="14" name="fk_app_sales_invoices_receipts_app_users1_idx">
+      <ColNames>UserId</ColNames>
+    </index>
+    <key id="139" parent="14" name="PRIMARY">
+      <ColNames>ReceipId
+UserId
+InvoiceId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="140" parent="14" name="fk_app_sales_invoices_receipts_app_sales_invoices1">
+      <ColNames>InvoiceId</ColNames>
+      <RefTableName>app_sales_invoices</RefTableName>
+      <RefColNames>InvoiceId</RefColNames>
+    </foreign-key>
+    <foreign-key id="141" parent="14" name="fk_app_sales_invoices_receipts_app_users1">
+      <ColNames>UserId</ColNames>
+      <RefTableName>app_users</RefTableName>
+      <RefColNames>UserId</RefColNames>
+    </foreign-key>
+    <column id="142" parent="15" name="SupplierId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="143" parent="15" name="Name">
+      <DataType>VARCHAR(40)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="144" parent="15" name="PhoneNumber">
+      <DataType>VARCHAR(15)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="145" parent="15" name="Email">
+      <DataType>VARCHAR(40)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="146" parent="15" name="Address">
+      <DataType>VARCHAR(50)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="147" parent="15" name="PRIMARY">
+      <ColNames>SupplierId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="148" parent="16" name="UserId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="149" parent="16" name="Username">
+      <DataType>VARCHAR(12)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="150" parent="16" name="Password">
+      <DataType>CHAR(60)|1</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="151" parent="16" name="Email">
+      <DataType>VARCHAR(40)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="152" parent="16" name="PhoneNumber">
+      <DataType>VARCHAR(15)|12</DataType>
+    </column>
+    <column id="153" parent="16" name="Subscription">
+      <DataType>DATE(10)|91</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="154" parent="16" name="LastLogin">
+      <DataType>DATETIME(19)|93</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="155" parent="16" name="GroupId">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="156" parent="16" name="Email_UNIQUE">
+      <ColNames>Email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="157" parent="16" name="Username_UNIQUE">
+      <ColNames>Username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="158" parent="16" name="fk_app_users_app_users_groups1_idx">
+      <ColNames>GroupId</ColNames>
+    </index>
+    <key id="159" parent="16" name="PRIMARY">
+      <ColNames>UserId
+GroupId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="160" parent="16" name="fk_app_users_app_users_groups1">
+      <ColNames>GroupId</ColNames>
+      <RefTableName>app_users_groups</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>GroupId</RefColNames>
+    </foreign-key>
+    <column id="161" parent="17" name="GroupId">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="162" parent="17" name="GroupName">
+      <DataType>VARCHAR(20)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="163" parent="17" name="PRIMARY">
+      <ColNames>GroupId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="164" parent="18" name="GroupId">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="165" parent="18" name="PrivilegeId">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="166" parent="18" name="fk_app_users_groups_has_app_users_privileges_app_users_grou_idx">
+      <ColNames>GroupId</ColNames>
+    </index>
+    <index id="167" parent="18" name="fk_app_users_groups_has_app_users_privileges_app_users_priv_idx">
+      <ColNames>PrivilegeId</ColNames>
+    </index>
+    <key id="168" parent="18" name="PRIMARY">
+      <ColNames>GroupId
+PrivilegeId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="169" parent="18" name="fk_app_users_groups_has_app_users_privileges_app_users_groups1">
+      <ColNames>GroupId</ColNames>
+      <RefTableName>app_users_groups</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>GroupId</RefColNames>
+    </foreign-key>
+    <foreign-key id="170" parent="18" name="fk_app_users_groups_has_app_users_privileges_app_users_privil1">
+      <ColNames>PrivilegeId</ColNames>
+      <RefTableName>app_users_privileges</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>PrivilegeId</RefColNames>
+    </foreign-key>
+    <column id="171" parent="19" name="PrivilegeId">
+      <DataType>TINYINT(3)|-6</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="172" parent="19" name="Privilege">
+      <DataType>VARCHAR(30)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="173" parent="19" name="PrivilegeTitle">
+      <DataType>VARCHAR(30)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="174" parent="19" name="PRIMARY">
+      <ColNames>PrivilegeId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="175" parent="20" name="id">
+      <DataType>INT(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="176" parent="20" name="FirstName">
+      <DataType>VARCHAR(10)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="177" parent="20" name="LastName">
+      <DataType>VARCHAR(10)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="178" parent="20" name="Address">
+      <DataType>VARCHAR(50)|12</DataType>
+    </column>
+    <column id="179" parent="20" name="DOB">
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <column id="180" parent="20" name="image">
+      <DataType>VARCHAR(30)|12</DataType>
+    </column>
+    <column id="181" parent="20" name="UserId">
+      <DataType>INT UNSIGNED(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="182" parent="20" name="fk_app_users_profiles_app_users_idx">
+      <ColNames>UserId</ColNames>
+    </index>
+    <key id="183" parent="20" name="PRIMARY">
+      <ColNames>id
+UserId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="184" parent="20" name="fk_app_users_profiles_app_users">
+      <ColNames>UserId</ColNames>
+      <RefTableName>app_users</RefTableName>
+      <RefColNames>UserId</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
